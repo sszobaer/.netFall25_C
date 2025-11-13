@@ -51,5 +51,11 @@ namespace IntroEF.Controllers
             TempData["Msg"] = "Data Updated";
             return RedirectToAction("Index");
         }
+        public ActionResult Search(string id) {
+            var data = (from s in db.Students
+                       where s.Name.Contains(id)
+                       select s).ToList();
+            return View(data);
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace FormProcessing.Controllers
         //}
         [HttpGet]
         public ActionResult Register() {
-            return View();
+            return View(new Student());
         }
         [HttpPost]
         public ActionResult Register(Student s)
