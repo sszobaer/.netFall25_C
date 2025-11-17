@@ -18,6 +18,7 @@ namespace IntroEF.EF
         public Student()
         {
             this.CourseStudents = new HashSet<CourseStudent>();
+            this.Registrations = new HashSet<Registration>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace IntroEF.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseStudent> CourseStudents { get; set; }
         public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Registration> Registrations { get; set; }
     }
 }

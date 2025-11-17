@@ -17,8 +17,10 @@ namespace IntroEF.EF
         public int Id { get; set; }
         public int SId { get; set; }
         public int CId { get; set; }
+        public int RegId { get; set; }
     
         public virtual Cours Cours { get; set; }
         public virtual Student Student { get; set; }
+        public virtual Registration Registration { get; set; }
     }
 }

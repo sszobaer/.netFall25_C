@@ -12,24 +12,21 @@ namespace IntroEF.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Cours
+    public partial class Registration
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cours()
+        public Registration()
         {
             this.CourseStudents = new HashSet<CourseStudent>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Code { get; set; }
-        public int Credit { get; set; }
-        public string Type { get; set; }
-        public int DeptId { get; set; }
-        public int Capacity { get; set; }
+        public System.DateTime Date { get; set; }
+        public string Status { get; set; }
+        public int StudentId { get; set; }
     
-        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseStudent> CourseStudents { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

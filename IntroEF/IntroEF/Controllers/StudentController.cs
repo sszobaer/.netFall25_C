@@ -57,5 +57,12 @@ namespace IntroEF.Controllers
                        select s).ToList();
             return View(data);
         }
+        public ActionResult Courses() {
+            var stId = 1;
+            var courses = (from c in db.CourseStudents
+                           where c.SId == stId
+                           select c).ToList();
+            return View(courses);
+        }
     }
 }

@@ -30,5 +30,6 @@ namespace IntroEF.EF
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<CourseStudent> CourseStudents { get; set; }
+        public virtual DbSet<Registration> Registrations { get; set; }
     }
 }

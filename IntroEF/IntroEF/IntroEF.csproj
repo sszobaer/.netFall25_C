@@ -129,14 +129,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="EF\Cours.cs">
+      <DependentUpon>UMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CourseStudent.cs">
       <DependentUpon>UMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Department.cs">
       <DependentUpon>UMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Employee.cs">
+      <DependentUpon>UMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Registration.cs">
       <DependentUpon>UMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Student.cs">
@@ -220,6 +227,8 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Search.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Student\Courses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
