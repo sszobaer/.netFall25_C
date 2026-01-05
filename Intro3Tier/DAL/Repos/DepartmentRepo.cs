@@ -1,5 +1,6 @@
 ﻿using DAL.EF;
 using DAL.EF.Models;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class DepartmentRepo
+    public class DepartmentRepo : IRepository<Department>
     {
         UMSContext db;
         public DepartmentRepo(UMSContext db )
@@ -32,7 +33,7 @@ namespace DAL.Repos
             db.Departments.Remove(exobj);   
             return db.SaveChanges() > 0;    
         }
-        public List<Department> GetAll() {
+        public List<Department> Get() {
             return db.Departments.ToList();
             /*var list = new List<Department>();
             for (int i = 1; i <= 10; i++) { 

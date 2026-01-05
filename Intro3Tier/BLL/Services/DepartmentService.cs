@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
+using DAL;
 using DAL.EF.Models;
 using DAL.Repos;
 using System;
@@ -12,25 +13,26 @@ namespace BLL.Services
 {
     public class DepartmentService
     {
-        DepartmentRepo repo;
-        public DepartmentService(DepartmentRepo repo)
+        DataAccessFactory factory;
+        public DepartmentService(DataAccessFactory factory)
         {
-            this.repo = repo;
+            this.factory = factory;
         }
         public List<DepartmentDTO> All() {
-            var data = repo.GetAll();
+            var data = factory.DepartmentData().Get();
             var ret = MapperConfig.GetMapper().Map<List<DepartmentDTO>>(data);
             return ret;
             
         }
         public DepartmentDTO Get(int id) { 
-            Department data = repo.Get(id);
+            Department data = factory.DepartmentData().Get(id);
             DepartmentDTO ret = MapperConfig.GetMapper().Map<DepartmentDTO>(data);
             return ret; 
         }
         public bool Create(DepartmentDTO dto) { 
             Department data = MapperConfig.GetMapper().Map<Department>(dto);
-            return repo.Create(data);
+            factory.DepartmentData().Create(data);
+            return true;
         }
     }
 }

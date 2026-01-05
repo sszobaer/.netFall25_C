@@ -1,4 +1,5 @@
 using BLL.Services;
+using DAL;
 using DAL.EF;
 using DAL.Repos;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<DepartmentService>();
+builder.Services.AddScoped<StudentService>();
 builder.Services.AddScoped<DepartmentRepo>();
+builder.Services.AddScoped<DataAccessFactory>();
+builder.Services.AddScoped<StudentRepo>();
 builder.Services.AddDbContext<UMSContext>(opt => {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConn"));
 });
