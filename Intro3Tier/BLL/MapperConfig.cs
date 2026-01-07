@@ -9,8 +9,11 @@ namespace BLL
         static MapperConfiguration cfg=new MapperConfiguration(c => {
             c.CreateMap<Department, DepartmentDTO>().ReverseMap();
             c.CreateMap<Student, StudentDTO>().ReverseMap();
-            //c.CreateMap<Department, DepartmentDTO>().ReverseMap();
-            //c.CreateMap<Department, DepartmentDTO>().ReverseMap();
+            c.CreateMap<Department, DepartmentStudentDTO>().ReverseMap();
+            c.CreateMap<Department, DepartmentCountDTO>().ForMember(
+                    dto => dto.Count,
+                    src => src.MapFrom(d=>d.Students.Count)
+            );
             //c.CreateMap<Department, DepartmentDTO>().ReverseMap();
             //c.CreateMap<Department, DepartmentDTO>().ReverseMap();
             

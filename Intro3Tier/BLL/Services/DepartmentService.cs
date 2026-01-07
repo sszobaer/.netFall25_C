@@ -34,5 +34,19 @@ namespace BLL.Services
             factory.DepartmentData().Create(data);
             return true;
         }
+        public DepartmentDTO GetByName(string name) { 
+            var data = factory.DepartmentFeature().GetByName(name);
+            return MapperConfig.GetMapper().Map<DepartmentDTO> (data);
+        
+        }
+        public DepartmentStudentDTO GetWithStudents(int id) { 
+            var data = factory.DepartmentFeature().GetWithStudents(id); 
+            return MapperConfig.GetMapper().Map<DepartmentStudentDTO> (data);   
+        }
+        public List<DepartmentCountDTO> TopNDeparmentsStCount(int n) {
+            var data = factory.DepartmentFeature().TopNDeparmentsStCount(n);
+            return MapperConfig.GetMapper ().Map<List<DepartmentCountDTO>> (data);
+
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DAL.EF;
 using DAL.EF.Models;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class DepartmentRepo : IRepository<Department>
+    public class DepartmentRepo : IRepository<Department>, IDepartmentFeature
     {
         UMSContext db;
         public DepartmentRepo(UMSContext db )
@@ -43,6 +44,44 @@ namespace DAL.Repos
                 });
             }
             return list;*/
+        }
+        public Department GetByName(string name) { 
+            var dept = (from d in db.Departments 
+                       where d.Name.Contains(name)
+                       select d).SingleOrDefault();
+            return dept;
+        }
+
+        public Department GetByNameWithStudent(string name)
+        {
+            var dept = (from d in db.Departments.Include(dep=> dep.Students)
+                        where d.Name.Contains(name)
+                        select d).SingleOrDefault();
+            return dept;
+        }
+
+        public Department GetWithStudents(int id)
+        {
+            var dept = from d in db.Departments.Include(dep=>dep.Students)   
+                       where d.Id == id select d;
+            return dept.SingleOrDefault();
+
+        }
+
+        public Department WithHighestStudents()
+        {
+            var dept = (from d in db.Departments.Include(dep=>dep.Students)
+                       orderby d.Students.Count() descending
+                       select d).First();
+            return dept;
+        }
+
+        public List<Department> TopNDeparmentsStCount(int n)
+        {
+            var dept = (from d in db.Departments.Include(dep => dep.Students)
+                        orderby d.Students.Count() descending
+                        select d).Take(n).ToList();
+            return dept;
         }
     }
 }

@@ -13,7 +13,10 @@ namespace DAL
             this.db = db;
         }
         public IRepository<Department> DepartmentData() { 
-            return new DepartmentRepoV2();
+            return new DepartmentRepo(db);
+        }
+        public IDepartmentFeature DepartmentFeature() {
+            return new DepartmentRepo(db);
         }
         public IRepository<Student> StudentData() {
             return new StudentRepo(db);
